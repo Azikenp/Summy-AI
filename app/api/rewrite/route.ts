@@ -1,9 +1,8 @@
-// app/api/rewrite/route.ts
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!, // Never expose this in client
+  apiKey: process.env.OPENAI_API_KEY!,
 });
 
 export async function POST(req: Request) {
@@ -25,6 +24,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ message });
   } catch (error) {
     console.error("OpenAI Error:", error);
-    return NextResponse.json({ error: "OpenAI request failed" }, { status: 500 });
+    return NextResponse.json(
+      { error: "OpenAI request failed" },
+      { status: 500 }
+    );
   }
 }

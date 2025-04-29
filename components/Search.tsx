@@ -1,9 +1,8 @@
 "use client";
 
-import { IoSendOutline } from "react-icons/io5";
-import { Button } from "./ui/button";
 import { useEffect, useRef, useState } from "react";
 import { Textarea } from "./ui/textarea";
+import SubmitButton from "./SubmitButton";
 
 const Search = () => {
   const [text, setText] = useState("");
@@ -31,9 +30,7 @@ const Search = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <Button type="submit">
-          <IoSendOutline />
-        </Button>
+        <SubmitButton />
       </div>
     </form>
   );
