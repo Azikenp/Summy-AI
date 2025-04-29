@@ -9,10 +9,11 @@ import {
 } from "@clerk/nextjs";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { Providers } from "@/store/Provider";
 
 const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -39,7 +40,7 @@ export default function RootLayout({
               <UserButton />
             </SignedIn>
           </header>
-          {children}
+          <Providers>{children}</Providers>
         </body>
       </html>
     </ClerkProvider>
