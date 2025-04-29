@@ -1,7 +1,6 @@
 "use client";
 
 import { IoSendOutline } from "react-icons/io5";
-import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useEffect, useRef, useState } from "react";
 import { Textarea } from "./ui/textarea";
