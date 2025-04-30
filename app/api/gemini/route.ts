@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       contents: prompt,
     });
 
-    console.log("Gemini raw response:", result);
+    console.log("Gemini raw response:", result?.candidates?.[0]?.content?.parts?.[0]?.text);
     
     const text = result.text || result?.response?.candidates?.[0]?.content?.parts?.[0]?.text;
 

@@ -7,7 +7,7 @@ import { sendPrompt } from "@/store/inputSlice";
 export default function SubmitButton() {
   const dispatch = useAppDispatch();
   const input = useAppSelector((state) => state.gemini.input);
-  const loading = useAppSelector((state) => state.gemini.loading);
+  // const loading = useAppSelector((state) => state.gemini.loading);
 
   const handleClick = () => {
     console.log("Prompt Sent:", input);
