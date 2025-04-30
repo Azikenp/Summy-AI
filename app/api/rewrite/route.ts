@@ -9,18 +9,17 @@ export async function POST(req: Request) {
   const { userInput } = await req.json();
 
   try {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      store: true,
+    const response = await openai.chat.completions.create({
+      model: "gpt-4.1",
       messages: [
         {
           role: "user",
-          content: `Rewrite the following text in a friendly tone:\n\n"${userInput}"`,
+          content: userInput,
         },
       ],
     });
 
-    const message = completion.choices[0].message.content;
+    const message = response.choices[0].message.content;
     return NextResponse.json({ message });
   } catch (error) {
     console.error("OpenAI Error:", error);
