@@ -1,33 +1,21 @@
 "use client";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Button } from "./ui/button";
 import { IoSendOutline } from "react-icons/io5";
+import { sendPrompt } from "@/store/inputSlice";
 
 export default function SubmitButton() {
-  const userInput = useAppSelector((state) => state.input.userInput);
+  const dispatch = useAppDispatch();
+  const input = useAppSelector((state) => state.gemini.input);
+  const loading = useAppSelector((state) => state.gemini.loading);
 
-  const handleSubmit = async () => {
-    try {
-      const response = await fetch("/api/rewrite", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userInput }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("✅ Rewritten response:", data.message);
-      } else {
-        console.error("❌ Error:", data.error);
-      }
-    } catch (error) {
-      console.error("❌ Network Error:", error);
-    }
+  const handleClick = () => {
+    console.log("Prompt Sent:", input);
+    dispatch(sendPrompt(input));
   };
 
   return (
-    <Button onClick={handleSubmit} type="submit">
+    <Button onClick={handleClick} type="submit">
       <IoSendOutline />
     </Button>
   );
