@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     });
 
     console.log(
-      "Gemini raw response:",
+      "Gemini response:",
       result?.candidates?.[0]?.content?.parts?.[0]?.text
     );
 

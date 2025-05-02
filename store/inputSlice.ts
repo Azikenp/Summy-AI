@@ -14,7 +14,7 @@ const initialState: GeminiState = {
   error: null,
 };
 
-// Async thunk to send prompt to Gemini API
+
 export const sendPrompt = createAsyncThunk(
   "gemini/sendPrompt",
   async (prompt: string) => {
