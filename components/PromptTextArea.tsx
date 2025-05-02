@@ -21,7 +21,7 @@ export default function PromptTextarea() {
     <Textarea
       ref={textareaRef}
       placeholder="Enter a search text"
-      className="w-[200px] h-auto md:w-[480px] placeholder:text-[10px] bg-transparent resize-none overflow-hidden"
+      className="w-[270px] md:w-[480px] placeholder:text-[10px] bg-transparent resize-none overflow-hidden"
       value={input}
       onChange={(e) => dispatch(setInput(e.target.value))}
     />

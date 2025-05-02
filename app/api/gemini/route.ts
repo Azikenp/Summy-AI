@@ -14,9 +14,13 @@ export async function POST(req: Request) {
       contents: prompt,
     });
 
-    console.log("Gemini raw response:", result?.candidates?.[0]?.content?.parts?.[0]?.text);
-    
-    const text = result.text || result?.response?.candidates?.[0]?.content?.parts?.[0]?.text;
+    console.log(
+      "Gemini raw response:",
+      result?.candidates?.[0]?.content?.parts?.[0]?.text
+    );
+
+    const text =
+      result.text || result?.candidates?.[0]?.content?.parts?.[0]?.text;
 
     return NextResponse.json({ message: text || "No response text found" });
   } catch (error) {
