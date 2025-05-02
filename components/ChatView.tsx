@@ -1,4 +1,10 @@
+"use client";
+import { useAppSelector } from "@/store/hooks";
+
 const ChatView = () => {
+  const { history, loading } = useAppSelector((state) => state.gemini);
+  console.log(history);
+
   const chats = [
     {
       name: "jne db wedjdk w j j dw jdwjdnwjwj jw dw djwq j djq wdjqd j sdj sj j jj  hd wjdw j",
@@ -11,12 +17,12 @@ const ChatView = () => {
 
   return (
     <div className="mt-2 flex flex-col">
-      {chats.map((chat, i) => (
+      {history.map((data, i) => (
         <div
           key={i}
-          className={`mb-4 rounded-md p-2 text-xs  text-black w-[80%] font-bold capitalize ${chat.ai ? "bg-gray-400 self-start" : "self-end text-gray-200 text-right"}`}
+          className={`mb-4 rounded-md p-2 text-xs  text-black w-[80%] font-bold capitalize ${data.role === "assistant" ? "bg-gray-400 self-start" : "self-end text-gray-200 text-right"}`}
         >
-          {chat.name}
+          {data.content}
         </div>
       ))}
     </div>

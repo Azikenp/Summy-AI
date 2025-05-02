@@ -10,7 +10,8 @@ export default function SubmitButton() {
   const input = useAppSelector((state) => state.gemini.input);
   const loading = useAppSelector((state) => state.gemini.loading);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     console.log("Prompt Sent:", input);
     dispatch(sendPrompt(input));
   };
