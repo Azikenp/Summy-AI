@@ -1,17 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+interface Message {
+  role: "user" | "assistant";
+  content: string;
+}
+
 interface GeminiState {
   input: string;
-  response: string;
   loading: boolean;
   error: string | null;
+  history: Message[];
 }
+
 
 const initialState: GeminiState = {
   input: "",
-  response: "",
   loading: false,
   error: null,
+  history: [],
 };
 
 
@@ -24,7 +30,10 @@ export const sendPrompt = createAsyncThunk(
       body: JSON.stringify({ prompt }),
     });
     const data = await res.json();
-    return data.message;
+    return {
+      userMessage: { role: "user" as const, content: prompt },
+      aiMessage: { role: "assistant" as const, content: data.message },
+    };
   }
 );
 
@@ -35,25 +44,28 @@ const geminiSlice = createSlice({
     setInput(state, action) {
       state.input = action.payload;
     },
+    clearHistory(state) {
+      state.history = [];
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(sendPrompt.pending, (state) => {
         state.loading = true;
         state.error = null;
-        state.response = "";
       })
       .addCase(sendPrompt.fulfilled, (state, action) => {
+        const { userMessage, aiMessage } = action.payload;
         state.loading = false;
-        state.response = action.payload;
-        console.log("Gemini Response:", action.payload);
+        state.history.push(userMessage, aiMessage);
+        state.input = "";
       })
-      .addCase(sendPrompt.rejected, (state, action) => {
+      .addCase(sendPrompt.rejected, (state) => {
         state.loading = false;
         state.error = "Something went wrong";
       });
   },
 });
 
-export const { setInput } = geminiSlice.actions;
+export const { setInput, clearHistory } = geminiSlice.actions;
 export default geminiSlice.reducer;

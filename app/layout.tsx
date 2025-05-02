@@ -31,7 +31,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className={inter.className}>
         <body>
-          <header className="flex justify-end items-center p-4 gap-4 h-[8vh]">
+          <header className="flex justify-end items-center p-4 gap-4 h-[8vh] bg-white">
             <SignedOut>
               <SignInButton />
               <SignUpButton />
