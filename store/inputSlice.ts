@@ -12,14 +12,12 @@ interface GeminiState {
   history: Message[];
 }
 
-
 const initialState: GeminiState = {
   input: "",
   loading: false,
   error: null,
   history: [],
 };
-
 
 export const sendPrompt = createAsyncThunk(
   "gemini/sendPrompt",
