@@ -6,7 +6,7 @@ const ChatView = () => {
   console.log(history);
 
   return (
-    <div className="mt-2 flex flex-col">
+    <div className="mt-2 flex flex-col pt-10">
       {history.map((data, i) => (
         <div
           key={i}

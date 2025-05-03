@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar";
 
 const Homepage = () => {
   return (
-    <div className="flex h-screen text-gray-100 pt-10">
+    <div className="flex h-screen text-gray-100">
       <Sidebar />
       <ContentPage />
     </div>

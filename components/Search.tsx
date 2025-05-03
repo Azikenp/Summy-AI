@@ -7,7 +7,7 @@ const Search = () => {
   // const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   return (
-    <form className="fixed bottom-10 border-1 rounded-md">
+    <form className="fixed bottom-10 border-1 rounded-md bg-white">
       <div className="flex items-center justify-center ">
         <PromptTextarea />
         <SubmitButton />
