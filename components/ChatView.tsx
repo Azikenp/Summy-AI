@@ -3,7 +3,7 @@ import { useAppSelector } from "@/store/hooks";
 
 const ChatView = () => {
   const { history, loading } = useAppSelector((state) => state.gemini);
-  console.log(history);
+  // console.log(history);
 
   return (
     <div className="mt-2 flex flex-col pt-10 pb-32 overflow-scroll hide-scrollbar ">
