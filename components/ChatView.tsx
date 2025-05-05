@@ -10,7 +10,7 @@ const ChatView = () => {
       {history.map((data, i) => (
         <div
           key={i}
-          className={`mb-4 rounded-md p-2 text-xs  text-black w-[80%] font-bold capitalize ${data.role === "assistant" ? "bg-gray-400 self-start" : "self-end text-gray-200 text-right"}`}
+          className={`mb-4 rounded-md p-2 text-xs text-black w-[80%] font-bold capitalize ${data.role === "assistant" ? "bg-gray-400 self-start" : "self-end text-gray-200 text-right"}`}
         >
           {data.content}
         </div>
