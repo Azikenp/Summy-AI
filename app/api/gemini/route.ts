@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     const aiMessage =
       result?.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
 
-    // Store in Supabase
+    
     await supabase.from("search_history").insert([
       { user_id: userId, role: "user", content: prompt },
       { user_id: userId, role: "assistant", content: aiMessage },
