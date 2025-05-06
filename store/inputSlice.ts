@@ -1,4 +1,6 @@
+import { auth } from "@clerk/nextjs/server";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createClient } from "@supabase/supabase-js";
 
 interface Message {
   role: "user" | "assistant";
@@ -28,10 +30,25 @@ export const sendPrompt = createAsyncThunk(
       body: JSON.stringify({ prompt }),
     });
     const data = await res.json();
+
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
+    
+    const { userId } = await auth(); 
+    
+    await supabase.from("search_history").insert([
+      { user_id: userId, role: "user", content: prompt },
+      { user_id: userId, role: "assistant", content: data.message },
+    ]);
+
     return {
       userMessage: { role: "user" as const, content: prompt },
       aiMessage: { role: "assistant" as const, content: data.message },
     };
+
+    
   }
 );
 
